@@ -1,0 +1,48 @@
+---
+title: "Shanaa's code for Statistical Rethinking"
+author: "Shanaa Modchalingam"
+date: "July 2, 2019"
+output: 
+  html_notebook:
+    toc: true
+    toc_float: true
+    number_sections: true
+    df_print: paged
+    
+---
+
+
+```{r setup, include=FALSE, warning=FALSE}
+source("analysisFunctions.R")
+library(data.table)
+library(tidyverse)
+library(ggbeeswarm)
+
+```
+
+# Starting up
+
+For this, I will be using the re-coded code for brms, ggplot2, and the tidyverse by Solomon Kurz (https://bookdown.org/ajkurz/Statistical_Rethinking_recoded/).
+
+The main text is Statistical Rethinking - A Bayesian Course with Examples in R and STAN by Richard McElreath.
+
+# Chapter by chapter code
+
+All code that follows from the book will be written in this section.
+
+## 
+
+Chapter 1: 
+
+##
+
+Chapter 2:
+
+###
+
+
+# Extra code
+
+I will use this space to test code, or just play around with parameters in the above code. Any application of the methods learned in the book to other data sets will go here.
+
+

@@ -13,7 +13,6 @@ output:
 
 
 ```{r setup, include=FALSE, warning=FALSE}
-source("analysisFunctions.R")
 library(data.table)
 library(tidyverse)
 library(ggbeeswarm)
@@ -30,13 +29,33 @@ The main text is Statistical Rethinking - A Bayesian Course with Examples in R a
 
 All code that follows from the book will be written in this section.
 
-## 
+## Chapter 1
 
-Chapter 1: 
+Main conclusion: there are lots of models (Golems of Prague), each does a specific thing really well, but only that. We need to be sure we understand what the model we are using does exactly, else we might use it for the wrong situation.
 
-##
+## Chapter 2
 
-Chapter 2:
+It's important to remember the garden of forking data: Each new observation gives us the relative chance of the population having a certain characteristics in comparison to all other plausible characteristics (these plausibilities are called "conjectures").
+
+Importantly, we need to know that once we have calculated prior plausibilities, a new data point can be added to our model by simple multiplying the prior plausibilities, by the chance of each conjecture giving us that data point! You can then normalize this by dividing by by the sum of the ways that could have produced the data. 
+
+
+This is the first bit of code, simply getting a % from a bunch of **ways the different conjectures can produce the data**
+```{r}
+ways <- c(0, 3, 8, 9, 0) # ways that the different conjectures (in the blue marble example) can produce the data we saw by drawing random with replacement
+ways/sum(ways) 
+```
+
+From the text: 
+
+> * A conjectured proportion of blue marbles, p, is usually called a **parameter** value. It’s just a way of indexing possible explanations of the data.
+> * The relative number of ways that a value p can produce the data is usually called a **likelihood**. It is derived by enumerating all the possible data sequences that could have happened and then eliminating those sequences inconsistent with the data.
+> * The prior plausibility of any specific p is usually called the **prior probability**.
+> * The new, updated plausibility of any specific p is usually called the **posterior probability**.
+
+
+
+
 
 ###
 

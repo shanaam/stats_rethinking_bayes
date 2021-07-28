@@ -305,14 +305,36 @@ div.tocify {
 <div id="chapter-by-chapter-code" class="section level1" number="2">
 <h1 number="2"><span class="header-section-number">2</span> Chapter by chapter code</h1>
 <p>All code that follows from the book will be written in this section.</p>
-<div id="section" class="section level2" number="2.1">
-<h2 number="2.1"><span class="header-section-number">2.1</span> </h2>
-<p>Chapter 1:</p>
+<div id="chapter-1" class="section level2" number="2.1">
+<h2 number="2.1"><span class="header-section-number">2.1</span> Chapter 1</h2>
+<p>Main conclusion: there are lots of models (Golems of Prague), each does a specific thing really well, but only that. We need to be sure we understand what the model we are using does exactly, else we might use it for the wrong situation.</p>
 </div>
-<div id="section-1" class="section level2" number="2.2">
-<h2 number="2.2"><span class="header-section-number">2.2</span> </h2>
-<p>Chapter 2:</p>
-<div id="section-2" class="section level3" number="2.2.1">
+<div id="chapter-2" class="section level2" number="2.2">
+<h2 number="2.2"><span class="header-section-number">2.2</span> Chapter 2</h2>
+<p>It’s important to remember the garden of forking data: Each new observation gives us the relative chance of the population having a certain characteristics in comparison to all other plausible characteristics (these plausibilities are called “conjectures”).</p>
+<p>Importantly, we need to know that once we have calculated prior plausibilities, a new data point can be added to our model by simple multiplying the prior plausibilities, by the chance of each conjecture giving us that data point! You can then normalize this by dividing by by the sum of the ways that could have produced the data.</p>
+<p>This is the first bit of code, simply getting a % from a bunch of <strong>ways the different conjectures can produce the data</strong></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2F5cyA8LSBjKDAsIDMsIDgsIDksIDApICMgd2F5cyB0aGF0IHRoZSBkaWZmZXJlbnQgY29uamVjdHVyZXMgKGluIHRoZSBibHVlIG1hcmJsZSBleGFtcGxlKSBjYW4gcHJvZHVjZSB0aGUgZGF0YSB3ZSBzYXcgYnkgZHJhd2luZyByYW5kb20gd2l0aCByZXBsYWNlbWVudFxud2F5cy9zdW0od2F5cykgXG5gYGAifQ== -->
+<pre class="r"><code>ways &lt;- c(0, 3, 8, 9, 0) # ways that the different conjectures (in the blue marble example) can produce the data we saw by drawing random with replacement
+ways/sum(ways) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMDAgMC4xNSAwLjQwIDAuNDUgMC4wMFxuIn0= -->
+<pre><code>[1] 0.00 0.15 0.40 0.45 0.00</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>From the text:</p>
+<blockquote>
+<ul>
+<li>A conjectured proportion of blue marbles, p, is usually called a <strong>parameter</strong> value. It’s just a way of indexing possible explanations of the data.</li>
+<li>The relative number of ways that a value p can produce the data is usually called a <strong>likelihood</strong>. It is derived by enumerating all the possible data sequences that could have happened and then eliminating those sequences inconsistent with the data.</li>
+<li>The prior plausibility of any specific p is usually called the <strong>prior probability</strong>.</li>
+<li>The new, updated plausibility of any specific p is usually called the <strong>posterior probability</strong>.</li>
+</ul>
+</blockquote>
+<div id="section" class="section level3" number="2.2.1">
 <h3 number="2.2.1"><span class="header-section-number">2.2.1</span> </h3>
 </div>
 </div>
@@ -323,7 +345,7 @@ div.tocify {
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNoYW5hYSdzIGNvZGUgZm9yIFN0YXRpc3RpY2FsIFJldGhpbmtpbmciDQphdXRob3I6ICJTaGFuYWEgTW9kY2hhbGluZ2FtIg0KZGF0ZTogIkp1bHkgMiwgMjAxOSINCm91dHB1dDogDQogIGh0bWxfbm90ZWJvb2s6DQogICAgdG9jOiB0cnVlDQogICAgdG9jX2Zsb2F0OiB0cnVlDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQogICAgZGZfcHJpbnQ6IHBhZ2VkDQogICAgDQotLS0NCg0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRSwgd2FybmluZz1GQUxTRX0NCnNvdXJjZSgiYW5hbHlzaXNGdW5jdGlvbnMuUiIpDQpsaWJyYXJ5KGRhdGEudGFibGUpDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkoZ2diZWVzd2FybSkNCg0KYGBgDQoNCiMgU3RhcnRpbmcgdXANCg0KRm9yIHRoaXMsIEkgd2lsbCBiZSB1c2luZyB0aGUgcmUtY29kZWQgY29kZSBmb3IgYnJtcywgZ2dwbG90MiwgYW5kIHRoZSB0aWR5dmVyc2UgYnkgU29sb21vbiBLdXJ6IChodHRwczovL2Jvb2tkb3duLm9yZy9hamt1cnovU3RhdGlzdGljYWxfUmV0aGlua2luZ19yZWNvZGVkLykuDQoNClRoZSBtYWluIHRleHQgaXMgU3RhdGlzdGljYWwgUmV0aGlua2luZyAtIEEgQmF5ZXNpYW4gQ291cnNlIHdpdGggRXhhbXBsZXMgaW4gUiBhbmQgU1RBTiBieSBSaWNoYXJkIE1jRWxyZWF0aC4NCg0KIyBDaGFwdGVyIGJ5IGNoYXB0ZXIgY29kZQ0KDQpBbGwgY29kZSB0aGF0IGZvbGxvd3MgZnJvbSB0aGUgYm9vayB3aWxsIGJlIHdyaXR0ZW4gaW4gdGhpcyBzZWN0aW9uLg0KDQojIyANCg0KQ2hhcHRlciAxOiANCg0KIyMNCg0KQ2hhcHRlciAyOg0KDQojIyMNCg0KDQojIEV4dHJhIGNvZGUNCg0KSSB3aWxsIHVzZSB0aGlzIHNwYWNlIHRvIHRlc3QgY29kZSwgb3IganVzdCBwbGF5IGFyb3VuZCB3aXRoIHBhcmFtZXRlcnMgaW4gdGhlIGFib3ZlIGNvZGUuIEFueSBhcHBsaWNhdGlvbiBvZiB0aGUgbWV0aG9kcyBsZWFybmVkIGluIHRoZSBib29rIHRvIG90aGVyIGRhdGEgc2V0cyB3aWxsIGdvIGhlcmUuDQoNCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNoYW5hYSdzIGNvZGUgZm9yIFN0YXRpc3RpY2FsIFJldGhpbmtpbmciDQphdXRob3I6ICJTaGFuYWEgTW9kY2hhbGluZ2FtIg0KZGF0ZTogIkp1bHkgMiwgMjAxOSINCm91dHB1dDogDQogIGh0bWxfbm90ZWJvb2s6DQogICAgdG9jOiB0cnVlDQogICAgdG9jX2Zsb2F0OiB0cnVlDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQogICAgZGZfcHJpbnQ6IHBhZ2VkDQogICAgDQotLS0NCg0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRSwgd2FybmluZz1GQUxTRX0NCmxpYnJhcnkoZGF0YS50YWJsZSkNCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShnZ2JlZXN3YXJtKQ0KDQpgYGANCg0KIyBTdGFydGluZyB1cA0KDQpGb3IgdGhpcywgSSB3aWxsIGJlIHVzaW5nIHRoZSByZS1jb2RlZCBjb2RlIGZvciBicm1zLCBnZ3Bsb3QyLCBhbmQgdGhlIHRpZHl2ZXJzZSBieSBTb2xvbW9uIEt1cnogKGh0dHBzOi8vYm9va2Rvd24ub3JnL2Fqa3Vyei9TdGF0aXN0aWNhbF9SZXRoaW5raW5nX3JlY29kZWQvKS4NCg0KVGhlIG1haW4gdGV4dCBpcyBTdGF0aXN0aWNhbCBSZXRoaW5raW5nIC0gQSBCYXllc2lhbiBDb3Vyc2Ugd2l0aCBFeGFtcGxlcyBpbiBSIGFuZCBTVEFOIGJ5IFJpY2hhcmQgTWNFbHJlYXRoLg0KDQojIENoYXB0ZXIgYnkgY2hhcHRlciBjb2RlDQoNCkFsbCBjb2RlIHRoYXQgZm9sbG93cyBmcm9tIHRoZSBib29rIHdpbGwgYmUgd3JpdHRlbiBpbiB0aGlzIHNlY3Rpb24uDQoNCiMjIENoYXB0ZXIgMQ0KDQpNYWluIGNvbmNsdXNpb246IHRoZXJlIGFyZSBsb3RzIG9mIG1vZGVscyAoR29sZW1zIG9mIFByYWd1ZSksIGVhY2ggZG9lcyBhIHNwZWNpZmljIHRoaW5nIHJlYWxseSB3ZWxsLCBidXQgb25seSB0aGF0LiBXZSBuZWVkIHRvIGJlIHN1cmUgd2UgdW5kZXJzdGFuZCB3aGF0IHRoZSBtb2RlbCB3ZSBhcmUgdXNpbmcgZG9lcyBleGFjdGx5LCBlbHNlIHdlIG1pZ2h0IHVzZSBpdCBmb3IgdGhlIHdyb25nIHNpdHVhdGlvbi4NCg0KIyMgQ2hhcHRlciAyDQoNCkl0J3MgaW1wb3J0YW50IHRvIHJlbWVtYmVyIHRoZSBnYXJkZW4gb2YgZm9ya2luZyBkYXRhOiBFYWNoIG5ldyBvYnNlcnZhdGlvbiBnaXZlcyB1cyB0aGUgcmVsYXRpdmUgY2hhbmNlIG9mIHRoZSBwb3B1bGF0aW9uIGhhdmluZyBhIGNlcnRhaW4gY2hhcmFjdGVyaXN0aWNzIGluIGNvbXBhcmlzb24gdG8gYWxsIG90aGVyIHBsYXVzaWJsZSBjaGFyYWN0ZXJpc3RpY3MgKHRoZXNlIHBsYXVzaWJpbGl0aWVzIGFyZSBjYWxsZWQgImNvbmplY3R1cmVzIikuDQoNCkltcG9ydGFudGx5LCB3ZSBuZWVkIHRvIGtub3cgdGhhdCBvbmNlIHdlIGhhdmUgY2FsY3VsYXRlZCBwcmlvciBwbGF1c2liaWxpdGllcywgYSBuZXcgZGF0YSBwb2ludCBjYW4gYmUgYWRkZWQgdG8gb3VyIG1vZGVsIGJ5IHNpbXBsZSBtdWx0aXBseWluZyB0aGUgcHJpb3IgcGxhdXNpYmlsaXRpZXMsIGJ5IHRoZSBjaGFuY2Ugb2YgZWFjaCBjb25qZWN0dXJlIGdpdmluZyB1cyB0aGF0IGRhdGEgcG9pbnQhIFlvdSBjYW4gdGhlbiBub3JtYWxpemUgdGhpcyBieSBkaXZpZGluZyBieSBieSB0aGUgc3VtIG9mIHRoZSB3YXlzIHRoYXQgY291bGQgaGF2ZSBwcm9kdWNlZCB0aGUgZGF0YS4gDQoNCg0KVGhpcyBpcyB0aGUgZmlyc3QgYml0IG9mIGNvZGUsIHNpbXBseSBnZXR0aW5nIGEgJSBmcm9tIGEgYnVuY2ggb2YgKip3YXlzIHRoZSBkaWZmZXJlbnQgY29uamVjdHVyZXMgY2FuIHByb2R1Y2UgdGhlIGRhdGEqKg0KYGBge3J9DQp3YXlzIDwtIGMoMCwgMywgOCwgOSwgMCkgIyB3YXlzIHRoYXQgdGhlIGRpZmZlcmVudCBjb25qZWN0dXJlcyAoaW4gdGhlIGJsdWUgbWFyYmxlIGV4YW1wbGUpIGNhbiBwcm9kdWNlIHRoZSBkYXRhIHdlIHNhdyBieSBkcmF3aW5nIHJhbmRvbSB3aXRoIHJlcGxhY2VtZW50DQp3YXlzL3N1bSh3YXlzKSANCmBgYA0KDQpGcm9tIHRoZSB0ZXh0OiANCg0KPiAqIEEgY29uamVjdHVyZWQgcHJvcG9ydGlvbiBvZiBibHVlIG1hcmJsZXMsIHAsIGlzIHVzdWFsbHkgY2FsbGVkIGEgKipwYXJhbWV0ZXIqKiB2YWx1ZS4gSXTigJlzIGp1c3QgYSB3YXkgb2YgaW5kZXhpbmcgcG9zc2libGUgZXhwbGFuYXRpb25zIG9mIHRoZSBkYXRhLg0KPiAqIFRoZSByZWxhdGl2ZSBudW1iZXIgb2Ygd2F5cyB0aGF0IGEgdmFsdWUgcCBjYW4gcHJvZHVjZSB0aGUgZGF0YSBpcyB1c3VhbGx5IGNhbGxlZCBhICoqbGlrZWxpaG9vZCoqLiBJdCBpcyBkZXJpdmVkIGJ5IGVudW1lcmF0aW5nIGFsbCB0aGUgcG9zc2libGUgZGF0YSBzZXF1ZW5jZXMgdGhhdCBjb3VsZCBoYXZlIGhhcHBlbmVkIGFuZCB0aGVuIGVsaW1pbmF0aW5nIHRob3NlIHNlcXVlbmNlcyBpbmNvbnNpc3RlbnQgd2l0aCB0aGUgZGF0YS4NCj4gKiBUaGUgcHJpb3IgcGxhdXNpYmlsaXR5IG9mIGFueSBzcGVjaWZpYyBwIGlzIHVzdWFsbHkgY2FsbGVkIHRoZSAqKnByaW9yIHByb2JhYmlsaXR5KiouDQo+ICogVGhlIG5ldywgdXBkYXRlZCBwbGF1c2liaWxpdHkgb2YgYW55IHNwZWNpZmljIHAgaXMgdXN1YWxseSBjYWxsZWQgdGhlICoqcG9zdGVyaW9yIHByb2JhYmlsaXR5KiouDQoNCg0KDQoNCg0KIyMjDQoNCg0KIyBFeHRyYSBjb2RlDQoNCkkgd2lsbCB1c2UgdGhpcyBzcGFjZSB0byB0ZXN0IGNvZGUsIG9yIGp1c3QgcGxheSBhcm91bmQgd2l0aCBwYXJhbWV0ZXJzIGluIHRoZSBhYm92ZSBjb2RlLiBBbnkgYXBwbGljYXRpb24gb2YgdGhlIG1ldGhvZHMgbGVhcm5lZCBpbiB0aGUgYm9vayB0byBvdGhlciBkYXRhIHNldHMgd2lsbCBnbyBoZXJlLg0KDQoNCg==</div>
 
 
 </div>
